@@ -18,7 +18,6 @@ public class Team {
         instances.add(this);
         this.id = instances.size();
         teamMembers=new ArrayList<TeamMember>();
-
     }
 
     public String getTeamName() {
@@ -41,5 +40,11 @@ public class Team {
         return instances.get(id-1);
     }
 
+    public List<TeamMember> getTeamMembers() {
+        return teamMembers;
+    }
 
+    public void addTeamMembers(TeamMember teamMemberName){
+        teamMembers.add(teamMemberName);
+    }
 }

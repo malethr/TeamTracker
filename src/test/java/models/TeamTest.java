@@ -27,16 +27,21 @@ public class TeamTest {
     public void tearDown() throws Exception {
         Team.clearAllTeams();
     }
+
+    public Team setupNewTeam(){
+        return new Team("DreamTeam");
+    }
+
     @Test
     public void AllTeamCorrectlyReturned_2() {
-        Team team = new Team("DreamTeam");
+        Team team = setupNewTeam();
         Team otherTeam = new Team ("AwesomeTeam");
         assertEquals(2, Team.getAll().size());
     }
 
     @Test
     public void AllTeamsContainsAllTeams_true() {
-        Team team = new Team("DreamTeam");
+        Team team = setupNewTeam();
         Team otherTeam = new Team ("AwesomeTeam");
         assertTrue(Team.getAll().contains(team));
         assertTrue(Team.getAll().contains(otherTeam));
@@ -44,7 +49,7 @@ public class TeamTest {
 
     @Test
     public void clearAllTeams_checkIfClearsData_0() {
-        Team team = new Team("DreamTeam");
+        Team team = setupNewTeam();
         Team otherTeam = new Team ("AwesomeTeam");
         Team.clearAllTeams();
         assertEquals(0,Team.getAll().size());
@@ -52,7 +57,7 @@ public class TeamTest {
 
     @Test
     public void getId_teamsInstantiateWithAnID_1() {
-        Team team = new Team("DreamTeam");
+        Team team = setupNewTeam();
         Team otherTeam = new Team ("AwesomeTeam");
         assertEquals(1, team.getId());
         assertEquals(2, otherTeam.getId());
@@ -60,10 +65,9 @@ public class TeamTest {
 
     @Test
     public void findById_getTeamInstance_otherTeam(){
-        Team team = new Team("DreamTeam");
+        Team team = setupNewTeam();
         Team otherTeam = new Team ("AwesomeTeam");
         assertEquals(otherTeam, Team.findById(otherTeam.getId()));
     }
-
 
 }
