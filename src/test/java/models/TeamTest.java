@@ -3,6 +3,7 @@ package models;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by mariathomas on 8/11/17.
@@ -26,5 +27,13 @@ public class TeamTest {
         Team team = new Team("DreamTeam");
         Team otherTeam = new Team ("AwesomeTeam");
         assertEquals(2, Team.getAll().size());
+    }
+
+    @Test
+    public void AllTeamsContainsAllTeams_true() {
+        Team team = new Team("DreamTeam");
+        Team otherTeam = new Team ("AwesomeTeam");
+        assertTrue(Team.getAll().contains(team));
+        assertTrue(Team.getAll().contains(otherTeam));
     }
 }
