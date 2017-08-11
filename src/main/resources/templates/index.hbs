@@ -1,0 +1,22 @@
+{{#partial "content"}}
+
+<h1 class="jumbotron>Team Tracker</h1>
+
+{{#if teamName}}
+    {{#each teamName}}
+        <p>CurrentTeams</p>
+        <p></p>
+    {{/each}}
+    {{else}}
+    <p>No team added yet!</p>
+{{/if}}
+
+<form action="/team/new" method="POST">
+  <label for="team-name">Enter Team Name: </label>
+  <input id="team-name" name="team-name" type="text">
+
+  <button type="submit" class="btn btn-default">Add post</button>
+</form>
+{{/partial}}
+
+{{> layout.hbs}}
