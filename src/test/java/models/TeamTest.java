@@ -1,18 +1,17 @@
 package models;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.Test;
+
+import static junit.framework.TestCase.assertEquals;
 
 /**
  * Created by mariathomas on 8/11/17.
  */
 public class TeamTest {
-    @Before
-    public void setUp() throws Exception {
-    }
 
-    @After
-    public void tearDown() throws Exception {
+    @Test
+    public void NewPostObjectGetsCorrectlyCreated_true() throws Exception {
+        Team team = new Team("Team 1: AwesomeTeam");
+        assertEquals(true, team instanceof Team);
     }
-
 }
