@@ -55,12 +55,10 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             int idToFind = Integer.parseInt(req.params("id"));
             Team foundTeam = Team.findById(idToFind);
-//            int idMemberToFind = Integer.parseInt(req.params("id"));
-//            TeamMember foundMember = TeamMember.findMemberById(idMemberToFind);
+            TeamMember teamMembers = TeamMember.findMemberById(idToFind);
             model.put("team", foundTeam);
-//            model.put("teamMember", foundMember);
+            model.put("teamMember", teamMembers);
             return new ModelAndView(model,"team-detail.hbs");
         }, new HandlebarsTemplateEngine());
-
     }
 }

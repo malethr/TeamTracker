@@ -1,7 +1,13 @@
 {{#partial "content"}}
-    <h3>Team: {{teamMember.teamMemberName}}</h3>
-    <h4>Members:{{team}}</h4>
+    <h3>Team: {{team.teamName}}</h3>
+    <h4>Members:</h4>
+    {{#if teamMember}}
+         <p>{{teamMember.teamMemberName}}</p>
+    {{else}}
+        <p>No member listed yet!</p>
+    {{/if}}
     <a href="/">Go Back</a>
+
 
 {{/partial}}
 

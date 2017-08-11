@@ -1,8 +1,8 @@
 {{#partial "content"}}
     <div class="col-md-8">
+        <h1>Current Teams:</h1>
         {{#if teams}}
             {{#each teams}}
-                <p>Current Teams:</p>
                 <p>{{id}}.&nbsp;<a href="/teams/{{id}}">{{teamName}}</a></p>
             {{/each}}
         {{else}}
