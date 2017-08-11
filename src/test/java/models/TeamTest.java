@@ -1,5 +1,6 @@
 package models;
 
+import org.junit.After;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -22,6 +23,10 @@ public class TeamTest {
         assertEquals("DreamTeam",team.getTeamName());
     }
 
+    @After
+    public void tearDown() throws Exception {
+        Team.clearAllTeams();
+    }
     @Test
     public void AllTeamCorrectlyReturned_2() {
         Team team = new Team("DreamTeam");
@@ -35,5 +40,21 @@ public class TeamTest {
         Team otherTeam = new Team ("AwesomeTeam");
         assertTrue(Team.getAll().contains(team));
         assertTrue(Team.getAll().contains(otherTeam));
+    }
+
+    @Test
+    public void clearAllTeams_checkIfClearsData_0() throws Exception {
+        Team team = new Team("DreamTeam");
+        Team otherTeam = new Team ("AwesomeTeam");
+        Team.clearAllTeams();
+        assertEquals(0,Team.getAll().size());
+    }
+
+    @Test
+    public void getId_backpackingsInstantiateWithAnID_1() throws Exception {
+        Team team = new Team("DreamTeam");
+        Team otherTeam = new Team ("AwesomeTeam");
+        assertEquals(1, team.getId());
+        assertEquals(2, otherTeam.getId());
     }
 }
