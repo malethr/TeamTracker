@@ -1,4 +1,5 @@
 import models.Team;
+import models.TeamMember;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -16,20 +17,6 @@ public class App {
     public static void main(String[] args) {
         staticFileLocation("/public");
 
-
-        get("/team/new", (req,res)->{
-            Map<String, Object> model = new HashMap<>();
-            return new ModelAndView(model, "team-form.hbs");
-        }, new HandlebarsTemplateEngine());
-
-        post("/team/new", (req,res)->{
-           Map<String, Object> model = new HashMap<>();
-           String teamName = req.queryParams("team-name");
-           Team newTeam = new Team(teamName);
-           model.put("team",newTeam);
-           return new ModelAndView(model,"team-success.hbs");
-        }, new HandlebarsTemplateEngine());
-
         get("/", (req,res)->{
             Map<String, Object> model = new HashMap<>();
             ArrayList<Team> teams = Team.getAll();
@@ -37,17 +24,43 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-//        get("/team/member/new", (req,res)->{
-//            Map<String, Object> model = new HashMap<>();
-//            return new ModelAndView(model, "teamMembers-form.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
-//        post("/team/member/new", (req,res)->{
-//            Map<String, Object> model = new HashMap<>();
-//            String memberName = req.queryParams("member-name");
-//            TeamMember newTeamMember = new TeamMember(memberName);
-//            model.put("team",newTeamMember);
-//            return new ModelAndView(model,"teamMembers-success.hbs");
-//        }, new HandlebarsTemplateEngine());
+        get("/teams/new", (req,res)->{
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "team-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/teams/new", (req,res)->{
+           Map<String, Object> model = new HashMap<>();
+           String teamName = req.queryParams("team-name");
+           Team team = new Team(teamName);
+           model.put("team",team);
+           return new ModelAndView(model,"team-success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+        get("/teams/members/new", (req,res)->{
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "teamMembers-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/teams/members/new", (req,res)->{
+            Map<String, Object> model = new HashMap<>();
+            String memberName = req.queryParams("member-name");
+            TeamMember newTeamMember = new TeamMember(memberName);
+            model.put("teamMember",newTeamMember);
+            return new ModelAndView(model,"teamMembers-success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/teams/:id", (req,res)->{
+            Map<String, Object> model = new HashMap<>();
+            int idToFind = Integer.parseInt(req.params("id"));
+            Team foundTeam = Team.findById(idToFind);
+//            int idMemberToFind = Integer.parseInt(req.params("id"));
+//            TeamMember foundMember = TeamMember.findMemberById(idMemberToFind);
+            model.put("team", foundTeam);
+//            model.put("teamMember", foundMember);
+            return new ModelAndView(model,"team-detail.hbs");
+        }, new HandlebarsTemplateEngine());
+
     }
 }

@@ -3,14 +3,14 @@
         {{#if teams}}
             {{#each teams}}
                 <p>Current Teams:</p>
-                <p>{{id}}:&nbsp;<a href="/">{{teamName}}</a></p>
+                <p>{{id}}.&nbsp;<a href="/teams/{{id}}">{{teamName}}</a></p>
             {{/each}}
-            {{else}}
-            <p>No team added yet!</p>
+        {{else}}
+        <p>No team listed yet!</p>
         {{/if}}
     </div>
     <div class="col-md-4">
-        <p class="btn btn-default"><a href="/team/new">Register your team</a></p>
+        <p class="btn btn-default"><a href="/teams/new">Register your team</a></p>
     </div>
 {{/partial}}
 
