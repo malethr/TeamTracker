@@ -43,7 +43,7 @@ public class TeamTest {
     }
 
     @Test
-    public void clearAllTeams_checkIfClearsData_0() throws Exception {
+    public void clearAllTeams_checkIfClearsData_0() {
         Team team = new Team("DreamTeam");
         Team otherTeam = new Team ("AwesomeTeam");
         Team.clearAllTeams();
@@ -51,10 +51,19 @@ public class TeamTest {
     }
 
     @Test
-    public void getId_backpackingsInstantiateWithAnID_1() throws Exception {
+    public void getId_teamsInstantiateWithAnID_1() {
         Team team = new Team("DreamTeam");
         Team otherTeam = new Team ("AwesomeTeam");
         assertEquals(1, team.getId());
         assertEquals(2, otherTeam.getId());
     }
+
+    @Test
+    public void findById_getTeamInstance_otherTeam(){
+        Team team = new Team("DreamTeam");
+        Team otherTeam = new Team ("AwesomeTeam");
+        assertEquals(otherTeam, Team.findById(otherTeam.getId()));
+    }
+
+
 }
