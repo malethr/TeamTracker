@@ -70,4 +70,15 @@ public class TeamTest {
         assertEquals(otherTeam, Team.findById(otherTeam.getId()));
     }
 
+    @Test
+    public void addMember_memberAddedToTeam_true() {
+        Team team = setupNewTeam();
+        TeamMember teamMember = new TeamMember("Jane Doe");
+        team.addTeamMembers(teamMember);
+        Team otherTeam = new Team ("AwesomeTeam");
+        TeamMember otherTeamMember = new TeamMember("John Smith");
+        otherTeam.addTeamMembers(otherTeamMember);
+        assertEquals(true, team.getTeamMembers().contains(teamMember));
+        assertEquals(true, otherTeam.getTeamMembers().contains(otherTeamMember));
+    }
 }
