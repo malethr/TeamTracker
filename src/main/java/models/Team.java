@@ -1,47 +1,48 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by mariathomas on 8/11/17.
  */
 public class Team {
 
-    private String teamName;
+    private String name;
     private int id;
-    private int teamMemberId;
 
-    public Team (String teamName){
-        this.teamName = teamName;
-        this.teamMemberId = id;
+    public Team (String name){
+        this.name = name;
     }
 
-    public String getTeamName() {
-        return teamName;
+    public String getName() {
+        return name;
     }
 
-    public static ArrayList<Team> getAll() {
-        return instances;
-    }
-
-    public static void clearAllTeams(){
-        instances.clear();
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getId() {
         return id;
     }
 
-    public static Team findById(int id){
-        return instances.get(id-1);
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public List<Member> getTeamMembers() {
-        return teamMembers;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Team team = (Team) o;
+
+        if (id != team.id) return false;
+        return name.equals(team.name);
     }
 
-    public void addTeamMembers(Member memberName){
-        teamMembers.add(memberName);
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + id;
+        return result;
     }
 }

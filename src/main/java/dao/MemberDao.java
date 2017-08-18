@@ -1,5 +1,7 @@
 package dao;
 
+import models.Member;
+
 import java.util.List;
 
 /**
