@@ -10,8 +10,8 @@ import java.util.List;
 public interface MemberDao {
     void add(Member member);    // Create
     List<Member> getAll();      // Read
-    Member findById(int id);    // Find client by id
-    void update(int id, String name, String address, int phone, int stylistId); // Update
+    Member findById(int id);    // Find member by id
+    void update(int id, String name, int memberId); // Update
     void deleteById(int id);    // Delete
-    void clearAllClients();     // Delete all
+    void clearAllMembers();     // Delete all
 }
