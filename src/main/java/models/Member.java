@@ -7,7 +7,7 @@ public class Member {
 
     private String name;
     private int teamId;
-    private int memberId;
+    private int id;
 
     public Member(String name, int teamId){
         this.name = name;
@@ -30,12 +30,12 @@ public class Member {
         this.teamId = teamId;
     }
 
-    public int getMemberId() {
-        return memberId;
+    public int getId() {
+        return id;
     }
 
-    public void setMemberId(int memberId) {
-        this.memberId = memberId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Member {
         Member that = (Member) o;
 
         if (teamId != that.teamId) return false;
-        if (memberId != that.memberId) return false;
+        if (id != that.id) return false;
         return name.equals(that.name);
     }
 
@@ -54,7 +54,7 @@ public class Member {
     public int hashCode() {
         int result = name.hashCode();
         result = 31 * result + teamId;
-        result = 31 * result + memberId;
+        result = 31 * result + id;
         return result;
     }
 }
