@@ -9,15 +9,12 @@ import java.util.List;
 public class Team {
 
     private String teamName;
-    private static ArrayList<Team> instances = new ArrayList<>();
     private int id;
-    private List<TeamMember> teamMembers;
+    private int teamMemberId;
 
     public Team (String teamName){
         this.teamName = teamName;
-        instances.add(this);
-        this.id = instances.size();
-        teamMembers=new ArrayList<TeamMember>();
+        this.teamMemberId = id;
     }
 
     public String getTeamName() {
@@ -40,11 +37,11 @@ public class Team {
         return instances.get(id-1);
     }
 
-    public List<TeamMember> getTeamMembers() {
+    public List<Member> getTeamMembers() {
         return teamMembers;
     }
 
-    public void addTeamMembers(TeamMember teamMemberName){
-        teamMembers.add(teamMemberName);
+    public void addTeamMembers(Member memberName){
+        teamMembers.add(memberName);
     }
 }

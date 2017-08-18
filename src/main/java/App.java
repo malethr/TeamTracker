@@ -1,5 +1,5 @@
+import models.Member;
 import models.Team;
-import models.TeamMember;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -46,8 +46,8 @@ public class App {
         post("/teams/members/new", (req,res)->{
             Map<String, Object> model = new HashMap<>();
             String memberName = req.queryParams("member-name");
-            TeamMember newTeamMember = new TeamMember(memberName);
-            model.put("teamMember",newTeamMember);
+            Member newMember = new Member(memberName);
+            model.put("teamMember", newMember);
             return new ModelAndView(model,"teamMembers-success.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -55,9 +55,9 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             int idToFind = Integer.parseInt(req.params("id"));
             Team foundTeam = Team.findById(idToFind);
-            TeamMember teamMembers = TeamMember.findMemberById(idToFind);
+            Member members = Member.findMemberById(idToFind);
             model.put("team", foundTeam);
-            model.put("teamMember", teamMembers);
+            model.put("teamMember", members);
             return new ModelAndView(model,"team-detail.hbs");
         }, new HandlebarsTemplateEngine());
     }

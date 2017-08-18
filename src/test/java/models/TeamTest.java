@@ -73,12 +73,12 @@ public class TeamTest {
     @Test
     public void addMember_memberAddedToTeam_true() {
         Team team = setupNewTeam();
-        TeamMember teamMember = new TeamMember("Jane Doe");
-        team.addTeamMembers(teamMember);
+        Member member = new Member("Jane Doe");
+        team.addTeamMembers(member);
         Team otherTeam = new Team ("AwesomeTeam");
-        TeamMember otherTeamMember = new TeamMember("John Smith");
-        otherTeam.addTeamMembers(otherTeamMember);
-        assertEquals(true, team.getTeamMembers().contains(teamMember));
-        assertEquals(true, otherTeam.getTeamMembers().contains(otherTeamMember));
+        Member otherMember = new Member("John Smith");
+        otherTeam.addTeamMembers(otherMember);
+        assertEquals(true, team.getTeamMembers().contains(member));
+        assertEquals(true, otherTeam.getTeamMembers().contains(otherMember));
     }
 }
