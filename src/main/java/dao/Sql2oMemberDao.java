@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by mariathomas on 8/18/17.
  */
-public class Sql2oMemberDao {
+public class Sql2oMemberDao implements MemberDao{
     private Sql2o sql2o;
     public Sql2oMemberDao(Sql2o sql2o){
         this.sql2o = sql2o;
@@ -53,7 +53,7 @@ public class Sql2oMemberDao {
 
     @Override
     public void update(int id, String newName, int newTeamId) {
-        String sql = "UPDATE members SET (name, teamId) = (:name, :teamId) WHERE id=:id";
+        String sql = "UPDATE members SET (name, teamid) = (:name, :teamid) WHERE id=:id";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("name", newName)
