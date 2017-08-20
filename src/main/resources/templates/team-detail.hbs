@@ -1,12 +1,13 @@
 {{#partial "content"}}
     <div class="well">
-        <h3>Team: {{team.name}}</h3>
+        <h3>Team: {{teams.name}}&nbsp;&nbsp;<p class ="btn btn-success btn-xs"><a href="/teams/{{id}}/edit">Edit</a></p></h3>
+
         <h4>Members:</h4>
             {{#if members}}
                 {{#each members}}
-                    <li>{{member.name}}</li>
+                    <li>{{this.name}}&nbsp;&nbsp;<p class ="btn btn-success btn-xs"><a href="/teams/{{teamid}}/members/{{membersid}}/edit">Edit</a></p></li>
                 {{/each}}
-                    <p class ="btn btn-success btn-lg"><a href="/members/new">Add another Member</a></p>
+                    <p class ="btn btn-success btn-md"><a href="/members/new">Add another Member</a></p>
                 {{else}}
         <p>No member listed yet!</p>
         <p class ="btn btn-success btn-md"><a href="/members/new">Add Member</a></p>
