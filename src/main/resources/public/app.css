@@ -1,0 +1,31 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    background: url("/images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: black;
+    font-family: monospace;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: #2a2a2a;
+    border: 1px dashed white;
+    margin-top: 5px;
+    text-decoration-color: white;
+    width: 100%;
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+a:link, a:hover {
+    color: white;
+}

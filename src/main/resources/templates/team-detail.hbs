@@ -1,14 +1,14 @@
 {{#partial "content"}}
-    <h3>Team: {{team.teamName}}</h3>
+    <h3>Team: {{team.name}}</h3>
     <h4>Members:</h4>
-    {{#if member}}
-         <p>{{member.memberName}}</p>
+    {{#if members}}
+        {{each}}
+            <li>{{member.name}}</li>
+        {{/each}}
     {{else}}
         <p>No member listed yet!</p>
     {{/if}}
     <a href="/">Go Back</a>
-
-
 {{/partial}}
 
 {{> layout.hbs}}

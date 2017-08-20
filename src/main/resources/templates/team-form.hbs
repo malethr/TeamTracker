@@ -1,9 +1,20 @@
 {{#partial "content"}}
-    <form action="/teams/new" method="POST">
-      <label for="team-name">Enter Team Name: </label>
-      <input id="team-name" name="team-name" type="text">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.hbs">Home</a></li>
+                <li><a href="team-form.hbs">Add Team</a></li>
+                <li><a href="member-form">Add Member</a></li>
+            </ul>
+        </div>
+    </nav>
+    <form action="/teams/new" method="POST" class="well">
+        <div class="form-group">
+          <label for="team-name">Enter Team Name: </label>
+          <input id="team-name" name="team-name" type="text">
 
-      <button type="submit" class="btn btn-default">Add Team</button>
+          <button type="submit" class="btn btn-default">Enter</button>
+        </div>
     </form>
 {{/partial}}
 

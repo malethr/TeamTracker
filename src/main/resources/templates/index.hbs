@@ -1,16 +1,27 @@
 {{#partial "content"}}
-    <div class="col-md-8">
-        <h1>Current Teams:</h1>
-        {{#if teams}}
-            {{#each teams}}
-                <p>{{id}}.&nbsp;<a href="/teams/{{id}}">{{teamName}}</a></p>
-            {{/each}}
-        {{else}}
-        <p>No team listed yet!</p>
-        {{/if}}
-    </div>
-    <div class="col-md-4">
-        <p class="btn btn-default"><a href="/teams/new">Register your team</a></p>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.hbs">Home</a></li>
+                <li><a href="team-form.hbs">Add Team</a></li>
+                <li><a href="member-form">Add Member</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="row well">
+        <div class="col-md-6">
+            <h1>CURRENT TEAMS:</h1>
+            {{#if teams}}
+                {{#each teams}}
+                    <li>{{id}}.&nbsp;<a href="/teams/{{id}}/members">{{name}}</a></li>
+                {{/each}}
+            {{else}}
+            <p>No team listed yet!</p>
+            {{/if}}
+        </div>
+        <div class="col-md-6">
+            <p class ="btn btn-success btn-lg"><a href="/teams/new">Add Team</a></p>
+        </div>
     </div>
 {{/partial}}
 

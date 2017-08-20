@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * Created by mariathomas on 8/18/17.
  */
+
 public class Sql2oTeamDao implements TeamDao{
     private final Sql2o sql2o;
 

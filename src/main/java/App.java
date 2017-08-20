@@ -1,40 +1,62 @@
-//import models.Member;
-//import models.Team;
-//import spark.ModelAndView;
-//import spark.template.handlebars.HandlebarsTemplateEngine;
-//
-//import java.util.ArrayList;
-//import java.util.HashMap;
-//import java.util.Map;
-//
-//import static spark.Spark.*;
-//
-///**
-// * Created by mariathomas on 8/11/17.
-// */
-//
-//public class App {
-//    public static void main(String[] args) {
-//        staticFileLocation("/public");
-//
-//        get("/", (req,res)->{
-//            Map<String, Object> model = new HashMap<>();
-//            ArrayList<Team> teams = Team.getAll();
-//            model.put("teams",teams);
-//            return new ModelAndView(model, "index.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
-//        get("/teams/new", (req,res)->{
-//            Map<String, Object> model = new HashMap<>();
-//            return new ModelAndView(model, "team-form.hbs");
-//        }, new HandlebarsTemplateEngine());
+import dao.Sql2oMemberDao;
+import dao.Sql2oTeamDao;
+import models.Member;
+import models.Team;
+import org.sql2o.Sql2o;
+import spark.ModelAndView;
+import spark.template.handlebars.HandlebarsTemplateEngine;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static spark.Spark.get;
+import static spark.Spark.staticFileLocation;
+
+/**
+ * Created by mariathomas on 8/11/17.
+ */
+
+public class App {
+    public static void main(String[] args) {
+        staticFileLocation("/public");
+        String connectionString = "jdbc:h2:~/teamtracker.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+        Sql2o sql2o = new Sql2o(connectionString, "","");
+        Sql2oMemberDao memberDao = new Sql2oMemberDao(sql2o);
+        Sql2oTeamDao teamDao = new Sql2oTeamDao(sql2o);
+
+
+        //get: list all team listed
+        get("/", (req,res)->{
+            Map<String, Object> model = new HashMap<>();
+            List<Team> teams = teamDao.getAll();
+            model.put("teams", teams);
+            return new ModelAndView(model, "index.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: list all member listed per team
+        get("/teams/:id/members", (req,res)->{
+            Map<String, Object> model = new HashMap<>();
+            int idToFind = Integer.parseInt(req.params("id"));
+            Team foundTeam = teamDao.findById(idToFind);
+            List<Member> members = teamDao.getAllMembersByTeam(idToFind);
+            model.put("team", foundTeam);
+            model.put("members", members);
+            return new ModelAndView(model, "team-detail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: display team form
+        get("/teams/new", (req,res)->{
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "team-form.hbs");
+        }, new HandlebarsTemplateEngine());
 //
 //        post("/teams/new", (req,res)->{
 //           Map<String, Object> model = new HashMap<>();
 //           String teamName = req.queryParams("team-name");
 //           Team team = new Team(teamName);
 //           model.put("team",team);
-//           return new ModelAndView(model,"team-success.hbs");
+//           return new ModelAndView(model,"success.hbs");
 //        }, new HandlebarsTemplateEngine());
 //
 //
@@ -60,5 +82,5 @@
 //            model.put("teamMember", members);
 //            return new ModelAndView(model,"team-detail.hbs");
 //        }, new HandlebarsTemplateEngine());
-//    }
-//}
+    }
+}
