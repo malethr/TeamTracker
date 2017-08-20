@@ -1,5 +1,6 @@
 import dao.Sql2oMemberDao;
 import dao.Sql2oTeamDao;
+import dao.TeamDao;
 import models.Member;
 import models.Team;
 import org.sql2o.Sql2o;
@@ -10,8 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static spark.Spark.get;
-import static spark.Spark.staticFileLocation;
+import static spark.Spark.*;
 
 /**
  * Created by mariathomas on 8/11/17.
@@ -50,15 +50,28 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "team-form.hbs");
         }, new HandlebarsTemplateEngine());
-//
-//        post("/teams/new", (req,res)->{
-//           Map<String, Object> model = new HashMap<>();
-//           String teamName = req.queryParams("team-name");
-//           Team team = new Team(teamName);
-//           model.put("team",team);
-//           return new ModelAndView(model,"success.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
+
+        //get: reset all data
+        get("/", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            teamDao.clearAllTeams();
+            memberDao.clearAllMembers();
+            List<Team> teams = teamDao.getAll();
+            List<Member> members = memberDao.getAll();
+            model.put("teams",teams);
+            model.put("members",members);
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //post: process new team form
+        post("/teams/new", (req,res)->{
+           Map<String, Object> model = new HashMap<>();
+           String teamName = req.queryParams("team-name");
+           Team team = new Team(teamName);
+           model.put("team",team);
+           return new ModelAndView(model,"success.hbs");
+        }, new HandlebarsTemplateEngine());
+
 //
 //        get("/teams/members/new", (req,res)->{
 //            Map<String, Object> model = new HashMap<>();
