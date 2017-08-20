@@ -3,8 +3,8 @@
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
-                <li><a href="/teams/new"">Add Team</a></li>
-                <li><a href="member-form">Add Member</a></li>
+                <li><a href="/teams/new">Add Team</a></li>
+                <li><a href="/members/new">Add Member</a></li>
             </ul>
         </div>
     </nav>
@@ -14,7 +14,7 @@
             {{#if teams}}
                 <ol>
                 {{#each teams}}
-                    <li><a href="/teams/{{id}}/members" class="team-list">{{name}}</a></li>
+                    <li><a href="/teams/{{id}}" class="team-list">{{name}}</a></li>
                 {{/each}}
                 </ol>
             {{else}}
