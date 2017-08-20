@@ -25,7 +25,6 @@
             <div class="form-group">
                 <label for="team">Team Name:</label>
                 <select id="team" name="team" required>
-                    <option selected>select team</option>
                     {{#each teams}}
                         <option value="{{this.id}}">{{this.name}}</option>
                     {{/each}}

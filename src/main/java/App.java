@@ -175,8 +175,5 @@ public class App {
             model.put("members", members);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
-
-
-
     }
 }
