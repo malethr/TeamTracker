@@ -1,6 +1,6 @@
 # _Team Tracker_
 
-#### _Register team and team members, August 11, 2017_
+#### _Register team and team members, August 18, 2017_
 
 #### By _**Maria Thomas**_
 
@@ -14,7 +14,10 @@ _Provides user to view list of teams, register the team and add team members._
 | ------------- | ------------- | ------------- |
 | Program will register team name| Dream Team  | Team 1: Dream Team  |
 | Program will add members to corresponding team | Jane Doe | Dream Team Members: Jane Doe |
-| Program will display list of registered teams  | Dream Team, Awesome Team  | Team 1: Dream Team, Team 2: Awesome Team  |         
+| Program will display list of registered teams  | Dream Team, Awesome Team  | Team 1: Dream Team, Team 2: Awesome Team  |
+| Program will delete selected team  | Dream Team - delete  | Team 2: Awesome Team  |
+| Program will delete selected member  | Jane Doe - delete  | Dream Team Members: none  |
+| Program will reset all | none | none  |
 
 ## Setup/Installation Requirements
 
@@ -33,6 +36,8 @@ _Maria Thomas. Email: malethr@gmail.com_
 _IntelliJ_
 _Java_
 _GitHub_
+_SQL_
+_Spark_
 
 ### License
 
