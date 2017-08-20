@@ -108,6 +108,20 @@ public class App {
             return new ModelAndView(model, "team-detail.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //get: delete a team and its members
+        get("/teams/:id/delete", (req,res)->{
+            Map<String, Object> model = new HashMap<>();
+            int id = Integer.parseInt(req.params("id"));
+            List<Member> teamMembers =teamDao.getAllMembersByTeam(id);
+            teamDao.deleteById(id);
+            teamMembers.clear();
+            List<Team> teams = teamDao.getAll();
+            List<Member> members = memberDao.getAll();
+            model.put("teams", teams);
+            model.put("members", members);
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
         //get: display team form
         get("/teams/:id/edit", (req,res)->{
             Map<String, Object> model = new HashMap<>();
@@ -150,6 +164,19 @@ public class App {
             model.put("members", members);
             return new ModelAndView(model,"success.hbs");
         }, new HandlebarsTemplateEngine());
+
+        //get: delete a member
+        get("/teams/:teamid/members/:id/delete", (req,res)->{
+            Map<String, Object> model = new HashMap<>();
+            memberDao.deleteById(Integer.parseInt(req.params("id")));
+            List<Team> teams = teamDao.getAll();
+            List<Member> members = memberDao.getAll();
+            model.put("teams", teams);
+            model.put("members", members);
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
 
     }
 }

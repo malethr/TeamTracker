@@ -12,9 +12,11 @@
         <div class="col-md-6">
             <h1>CURRENT TEAMS:</h1>
             {{#if teams}}
+                <em>Click team name to view members</em>
+                <br>
                 <ol>
                 {{#each teams}}
-                    <li><a href="/teams/{{id}}" class="team-list">{{name}}</a><p class ="btn btn-warning btn-xs"><a href="/teams/{{id}}/edit">Edit team</a></p></li>
+                    <li class="team-link"><a href="/teams/{{id}}" class="team-list">{{name}}&nbsp;&nbsp;</a><p class ="btn btn-warning btn-xs"><a href="/teams/{{id}}/edit">Edit team</a></p>&nbsp;<p class ="btn btn-danger btn-xs"><a href="/teams/{{id}}/delete">Delete team</a></p></li>
                 {{/each}}
                 </ol>
             {{else}}
@@ -22,7 +24,7 @@
             {{/if}}
         </div>
         <div class="col-md-6">
-            <p class ="btn btn-success btn-md"><a href="/teams/new">Add Team</a></p>
+            <p class ="btn btn-success btn-md"><a href="/teams/new">Add Team</a></p><br><br>
             <p class ="btn btn-danger btn-md"><a href="/teams/reset">Reset</a></p>
         </div>
     </div>
