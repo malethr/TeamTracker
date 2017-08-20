@@ -8,22 +8,36 @@
             </ul>
         </div>
     </nav>
-    <form action="/members/new" method="POST" class="well">
-        <div class="form-group">
-            <label for="team">Team Name:</label>
-            <select id="team" name="team" required>
-                <option selected>select team</option>
-                {{#each teams}}
-                    <option value="{{this.id}}">{{this.name}}</option>
-                {{/each}}
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="member-name">Enter Member Name: </label>
-            <input id="member-name" name="member-name" type="text" required>
-        </div>
-        <button type="submit" class="btn btn-default">Enter</button>
-    </form>
+    {{#if editMember}}
+        <form action="/teams/{{editMember.teamId}}/members/{{editMember.id}}/edit" method="POST" class="well">
+            <div class="form-group">
+                    <label for="team">Team Name:&nbsp;{{memberTeam.name}}</label>
+            </div>
+            <div class="form-group">
+                <label for="member-name">Enter Member Name: </label>
+                <input id="member-name" name="member-name" type="text" placeholder={{editMember.name}} required>
+                <button type="submit" class="btn btn-default">Enter</button>
+            </div>
+
+        </form>
+    {{else}}
+        <form action="/members/new" method="POST" class="well">
+            <div class="form-group">
+                <label for="team">Team Name:</label>
+                <select id="team" name="team" required>
+                    <option selected>select team</option>
+                    {{#each teams}}
+                        <option value="{{this.id}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="member-name">Enter Member Name: </label>
+                <input id="member-name" name="member-name" type="text" required>
+            </div>
+            <button type="submit" class="btn btn-default">Enter</button>
+        </form>
+    {{/if}}
 {{/partial}}
 
 {{> layout.hbs}}

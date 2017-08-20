@@ -14,7 +14,7 @@
             {{#if teams}}
                 <ol>
                 {{#each teams}}
-                    <li><a href="/teams/{{id}}" class="team-list">{{name}}</a></li>
+                    <li><a href="/teams/{{id}}" class="team-list">{{name}}</a><p class ="btn btn-warning btn-xs"><a href="/teams/{{id}}/edit">Edit team</a></p></li>
                 {{/each}}
                 </ol>
             {{else}}
@@ -22,8 +22,8 @@
             {{/if}}
         </div>
         <div class="col-md-6">
-            <p class ="btn btn-success btn-lg"><a href="/teams/new">Add Team</a></p>
-            <p class ="btn btn-danger btn-lg"><a href="/teams/reset">Reset</a></p>
+            <p class ="btn btn-success btn-md"><a href="/teams/new">Add Team</a></p>
+            <p class ="btn btn-danger btn-md"><a href="/teams/reset">Reset</a></p>
         </div>
     </div>
 {{/partial}}
