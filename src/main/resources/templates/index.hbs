@@ -12,16 +12,18 @@
         <div class="col-md-6">
             <h1>CURRENT TEAMS:</h1>
             {{#if teams}}
+                <ol>
                 {{#each teams}}
-                    <li>{{id}}.&nbsp;<a href="/teams/{{id}}/members">{{name}}</a></li>
+                    <li><a href="/teams/{{id}}/members" class="team-list">{{name}}</a></li>
                 {{/each}}
+                </ol>
             {{else}}
             <p>No team listed yet!</p>
             {{/if}}
         </div>
         <div class="col-md-6">
             <p class ="btn btn-success btn-lg"><a href="/teams/new">Add Team</a></p>
-            <p class ="btn btn-danger btn-lg"><a href="/">Reset</a></p>
+            <p class ="btn btn-danger btn-lg"><a href="/teams/reset">Reset</a></p>
         </div>
     </div>
 {{/partial}}

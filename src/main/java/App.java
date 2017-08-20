@@ -1,6 +1,5 @@
 import dao.Sql2oMemberDao;
 import dao.Sql2oTeamDao;
-import dao.TeamDao;
 import models.Member;
 import models.Team;
 import org.sql2o.Sql2o;
@@ -48,11 +47,23 @@ public class App {
         //get: display team form
         get("/teams/new", (req,res)->{
             Map<String, Object> model = new HashMap<>();
+            List<Team> teams = teamDao.getAll();
+            model.put("teams",teams);
             return new ModelAndView(model, "team-form.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //get: display reset confirmation
+        get("/teams/reset", (req,res)->{
+            Map<String, Object> model = new HashMap<>();
+            List<Team> teams = teamDao.getAll();
+            List<Member> members = memberDao.getAll();
+            model.put("teams",teams);
+            model.put("members",members);
+            return new ModelAndView(model, "reset.hbs");
+        }, new HandlebarsTemplateEngine());
+
         //get: reset all data
-        get("/", (req, res) -> {
+        get("/teams/reset/success", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             teamDao.clearAllTeams();
             memberDao.clearAllMembers();
@@ -68,9 +79,21 @@ public class App {
            Map<String, Object> model = new HashMap<>();
            String teamName = req.queryParams("team-name");
            Team team = new Team(teamName);
-           model.put("team",team);
+           teamDao.add(team);
+           List<Team> teams = teamDao.getAll();
+           model.put("teams",teams);
            return new ModelAndView(model,"success.hbs");
         }, new HandlebarsTemplateEngine());
+
+        //get: display team details
+        get("/teams/:id", (req,res)->{
+            Map<String, Object> model = new HashMap<>();
+            int idToFind = Integer.parseInt(req.params("id"));
+            Team foundTeam = teamDao.findById(idToFind);
+            model.put("team", foundTeam);
+            return new ModelAndView(model,"team-detail.hbs");
+        }, new HandlebarsTemplateEngine());
+
 
 //
 //        get("/teams/members/new", (req,res)->{
@@ -86,14 +109,6 @@ public class App {
 //            return new ModelAndView(model,"teamMembers-success.hbs");
 //        }, new HandlebarsTemplateEngine());
 //
-//        get("/teams/:id", (req,res)->{
-//            Map<String, Object> model = new HashMap<>();
-//            int idToFind = Integer.parseInt(req.params("id"));
-//            Team foundTeam = Team.findById(idToFind);
-//            Member members = Member.findMemberById(idToFind);
-//            model.put("team", foundTeam);
-//            model.put("teamMember", members);
-//            return new ModelAndView(model,"team-detail.hbs");
-//        }, new HandlebarsTemplateEngine());
+//
     }
 }

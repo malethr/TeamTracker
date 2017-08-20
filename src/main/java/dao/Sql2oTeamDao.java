@@ -94,4 +94,5 @@ public class Sql2oTeamDao implements TeamDao{
                     .executeAndFetch(Member.class);
         }
     }
+
 }

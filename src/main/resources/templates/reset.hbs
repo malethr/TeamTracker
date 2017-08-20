@@ -1,0 +1,18 @@
+{{#partial "content"}}
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/teams/new"">Add Team</a></li>
+                <li><a href="member-form">Add Member</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="well">
+        <h1>Are you sure you want to reset all?</h1>
+        <p class ="btn btn-success btn-md"><a href="/teams/reset/success">Yes</a></p>
+        <p class ="btn btn-primary btn-md"><a href="/">No</a></p>
+    </div>
+
+{{/partial}}
+{{> layout.hbs}}

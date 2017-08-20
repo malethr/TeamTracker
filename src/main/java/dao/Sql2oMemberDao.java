@@ -87,4 +87,5 @@ public class Sql2oMemberDao implements MemberDao{
             System.out.println(ex);
         }
     }
+
 }

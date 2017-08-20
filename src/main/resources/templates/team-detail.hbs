@@ -2,11 +2,12 @@
     <h3>Team: {{team.name}}</h3>
     <h4>Members:</h4>
     {{#if members}}
-        {{each}}
+        {{each members}}
             <li>{{member.name}}</li>
         {{/each}}
     {{else}}
         <p>No member listed yet!</p>
+        <p class ="btn btn-success btn-lg"><a href="/teams/:id/members/new">Add Member</a></p>
     {{/if}}
     <a href="/">Go Back</a>
 {{/partial}}
